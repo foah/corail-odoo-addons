@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_project_kanban" model="ir.ui.view">
+        <field name="name">project.project.kanban.inherit</field>
+        <field name="model">project.project</field>
+        <field name="priority" eval="50"/>
+        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="arch" type="xml">
+             <a name="%(project.act_project_project_2_project_task_all)d" position="before">
+                <a type="open"/>
+             </a>
+
+        </field>
+    </record>
+</odoo>
