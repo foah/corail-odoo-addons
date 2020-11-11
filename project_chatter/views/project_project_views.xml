@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="edit_project" model="ir.ui.view">
+        <field name="name">project.project.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <div class="oe_chatter">
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+        </field>
+    </record>
+
+   
+</odoo>
