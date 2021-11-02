@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+    <!-- account chart  -->
+    <record id="tn_chart_template" model="account.chart.template">
+        <field name="property_account_receivable_id" ref="pcg_70"/>
+        <field name="property_account_payable_id" ref="pcg_4011"/>
+        <field name="property_account_income_categ_id" ref="pcg_41"/>
+        <field name="property_account_expense_categ_id" ref="pcg_401"/>
+        <field name="income_currency_exchange_account_id" ref="pcg_756"/>
+        <field name="expense_currency_exchange_account_id" ref="pcg_655"/>
+    </record>
+
+
+    <!-- Account Tax Group -->
+    <record id="tax_group_tn_fodec" model="account.tax.group">
+        <field name="name">FODEC 1%</field>
+    </record>
+    
+    <record id="tax_group_tn_tva_7" model="account.tax.group">
+        <field name="name">TVA %7</field>
+    </record>
+
+    <record id="tax_group_tn_tva_13" model="account.tax.group">
+        <field name="name">TVA %13</field>
+    </record>
+
+    <record id="tax_group_tn_tva_19" model="account.tax.group">
+        <field name="name">TVA %19</field>
+    </record>
+
+    <!-- Account Tax Tags -->
+    <record id="tag_tn_tax_sale" model="account.account.tag">
+        <field name="name">TAX SALE</field>
+        <field name="applicability">taxes</field>
+    </record>
+
+    <record id="tag_tn_tax_purchase" model="account.account.tag">
+        <field name="name">TAX PURCHASE</field>
+        <field name="applicability">taxes</field>
+    </record>
+
+    <record id="tag_tn_fodec" model="account.account.tag">
+        <field name="name">FODEC 1%</field>
+        <field name="applicability">taxes</field>
+    </record>
+
+    <record id="tag_tn_tva_7" model="account.account.tag">
+        <field name="name">TVA %7</field>
+        <field name="applicability">taxes</field>
+    </record>
+
+    <record id="tag_tn_tva_13" model="account.account.tag">
+        <field name="name">TVA %13</field>
+        <field name="applicability">taxes</field>
+    </record>
+
+    <record id="tag_tn_tva_19" model="account.account.tag">
+        <field name="name">TVA %19</field>
+        <field name="applicability">taxes</field>
+    </record>
+
+    <!-- account.tax.template -->
+    <!-- VENTES Tax excluded from price -->
+    <record id="tn_fodec_sale" model="account.tax.template">
+        <field name="sequence">10</field>
+        <field name="description">FODEC 1%</field>
+        <field name="name">FODEC (sale)</field>
+        <field name="account_id" ref="pcg_43651"/>
+        <field name="refund_account_id" ref="pcg_43651"/>
+        <field name="price_include" eval="0"/>
+        <field name="include_base_amount">1</field>
+        <field name="amount">1</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">sale</field>
+        <field name="chart_template_id" ref="tn_chart_template"/>
+        <field name="tag_ids" eval="[(6,0, [ref('tag_tn_fodec'), ref('tag_tn_tax_sale')])]"/>
+        <field name="tax_group_id" ref="tax_group_tn_fodec"/>
+    </record>
+
+    <record id="tn_tva_sale_7" model="account.tax.template">
+        <field name="sequence">10</field>
+        <field name="description">TVA 7%</field>
+        <field name="name">TVA 7% (sale)</field>
+        <field name="account_id" ref="pcg_43651"/>
+        <field name="refund_account_id" ref="pcg_43651"/>
+        <field name="price_include" eval="0"/>
+        <field name="amount">7</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">sale</field>
+        <field name="chart_template_id" ref="tn_chart_template"/>
+        <field name="tag_ids" eval="[(6,0,[ref('tag_tn_tva_7'), ref('tag_tn_tax_sale')])]"/>
+        <field name="tax_group_id" ref="tax_group_tn_tva_7"/>
+    </record>
+
+    <record id="tn_tva_sale_13" model="account.tax.template">
+        <field name="sequence">10</field>
+        <field name="description">TVA 13%</field>
+        <field name="name">TVA 13% (sale)</field>
+        <field name="account_id" ref="pcg_43651"/>
+        <field name="refund_account_id" ref="pcg_43651"/>
+        <field name="price_include" eval="0"/>
+        <field name="amount">13</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">sale</field>
+        <field name="chart_template_id" ref="tn_chart_template"/>
+        <field name="tag_ids" eval="[(6,0,[ref('tag_tn_tva_13'), ref('tag_tn_tax_sale')])]"/>
+        <field name="tax_group_id" ref="tax_group_tn_tva_13"/>
+    </record>
+
+    <record id="tn_tva_sale_19" model="account.tax.template">
+        <field name="sequence">10</field>
+        <field name="description">TVA 19%</field>
+        <field name="name">TVA 19% (sale)</field>
+        <field name="account_id" ref="pcg_43651"/>
+        <field name="refund_account_id" ref="pcg_43651"/>
+        <field name="price_include" eval="0"/>
+        <field name="amount">19</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">sale</field>
+        <field name="chart_template_id" ref="tn_chart_template"/>
+        <field name="tag_ids" eval="[(6,0,[ref('tag_tn_tva_19'), ref('tag_tn_tax_sale')])]"/>
+        <field name="tax_group_id" ref="tax_group_tn_tva_19"/>
+    </record>
+
+
+    <!-- Achat Tax excluded from price -->
+    <record id="tn_fodec_purchase" model="account.tax.template">
+        <field name="sequence">10</field>
+        <field name="description">FODEC 1%</field>
+        <field name="name">FODEC (purchase)</field>
+        <field name="account_id" ref="pcg_43651"/>
+        <field name="refund_account_id" ref="pcg_43651"/>
+        <field name="price_include" eval="0"/>
+        <field name="include_base_amount">1</field>
+        <field name="amount">1</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="chart_template_id" ref="tn_chart_template"/>
+        <field name="tag_ids" eval="[(6,0, [ref('tag_tn_fodec'), ref('tag_tn_tax_purchase')])]"/>
+        <field name="tax_group_id" ref="tax_group_tn_fodec"/>
+    </record>
+
+    <record id="tn_tva_purchase_7" model="account.tax.template">
+        <field name="sequence">10</field>
+        <field name="description">TVA 7%</field>
+        <field name="name">TVA 7% (purchase)</field>
+        <field name="account_id" ref="pcg_43651"/>
+        <field name="refund_account_id" ref="pcg_43651"/>
+        <field name="price_include" eval="0"/>
+        <field name="amount">7</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="chart_template_id" ref="tn_chart_template"/>
+        <field name="tag_ids" eval="[(6,0,[ref('tag_tn_tva_7'), ref('tag_tn_tax_purchase')])]"/>
+        <field name="tax_group_id" ref="tax_group_tn_tva_7"/>
+    </record>
+
+    <record id="tn_tva_purchase_13" model="account.tax.template">
+        <field name="sequence">10</field>
+        <field name="description">TVA 13%</field>
+        <field name="name">TVA 13% (purchase)</field>
+        <field name="account_id" ref="pcg_43651"/>
+        <field name="refund_account_id" ref="pcg_43651"/>
+        <field name="price_include" eval="0"/>
+        <field name="amount">13</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="chart_template_id" ref="tn_chart_template"/>
+        <field name="tag_ids" eval="[(6,0,[ref('tag_tn_tva_13'), ref('tag_tn_tax_purchase')])]"/>
+        <field name="tax_group_id" ref="tax_group_tn_tva_13"/>
+    </record>
+
+    <record id="tn_tva_purchase_19" model="account.tax.template">
+        <field name="sequence">10</field>
+        <field name="description">TVA 19%</field>
+        <field name="name">TVA 19% (purchase)</field>
+        <field name="account_id" ref="pcg_43651"/>
+        <field name="refund_account_id" ref="pcg_43651"/>
+        <field name="price_include" eval="0"/>
+        <field name="amount">19</field>
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="chart_template_id" ref="tn_chart_template"/>
+        <field name="tag_ids" eval="[(6,0,[ref('tag_tn_tva_19'), ref('tag_tn_tax_purchase')])]"/>
+        <field name="tax_group_id" ref="tax_group_tn_tva_19"/>
+    </record>
+
+    </data>
+</odoo>
